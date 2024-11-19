@@ -1,0 +1,59 @@
+---
+import '../styles/tailwind.css'; // Asegúrate de tener Tailwind configurado
+---
+
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AquaAnalytics</title>
+  </head>
+  <body class="bg-blue-50 bg-cover bg-center" style="background-image: url('/path/to/your/image.jpg');">
+    <!-- Barra superior -->
+    <header class="bg-gradient-to-r from-blue-500 to-blue-700 text-white shadow-lg">
+      <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+        <h1 class="text-2xl font-bold tracking-wide">AquaAnalytics</h1>
+      </div>
+    </header>
+
+    <!-- Contenido principal -->
+    <main class="py-10">
+      <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Caja izquierda: descripción y manual -->
+        <div class="bg-gray-700 bg-opacity-50 p-6 rounded-lg text-white">
+          <h2 class="text-xl font-bold mb-4">Bienvenido a AquaAnalytics</h2>
+          <p class="mb-4">
+            AquaAnalytics es una herramienta diseñada para ayudarte a calcular tu consumo semanal de agua. 
+            Introduce los datos solicitados y obtén una estimación precisa para optimizar el uso de este recurso vital.
+          </p>
+          <h3 class="text-lg font-semibold mb-2">Manual de usuario:</h3>
+          <ul class="list-disc list-inside">
+            <li>Rellena todos los campos del formulario a la derecha.</li>
+            <li>Asegúrate de que los valores sean realistas.</li>
+            <li>Presiona el botón "Calcular" para obtener el consumo total.</li>
+          </ul>
+        </div>
+
+        <!-- Caja derecha: formulario -->
+        <div class="bg-white p-6 shadow-lg rounded-lg">
+          <h2 class="text-xl font-bold text-blue-600 mb-4">Calculadora de Consumo de Agua</h2>
+          <form id="waterForm" class="space-y-4">
+            <div>
+              <label for="numPeople" class="block text-sm font-medium text-gray-700">Número de personas</label>
+              <input type="number" id="numPeople" class="mt-1 p-2 block w-full border rounded-lg" placeholder="Ej. 4" required />
+            </div>
+            <div>
+              <label for="dailyUsage" class="block text-sm font-medium text-gray-700">Consumo diario por persona (litros)</label>
+              <input type="number" id="dailyUsage" class="mt-1 p-2 block w-full border rounded-lg" placeholder="Ej. 150" required />
+            </div>
+            <div>
+              <label for="laundry" class="block text-sm font-medium text-gray-700">Lavadora (cargas/semana)</label>
+              <input type="number" id="laundry" class="mt-1 p-2 block w-full border rounded-lg" placeholder="Ej. 3" required />
+            </div>
+            <div>
+              <label for="dishwasher" class="block text-sm font-medium text-gray-700">Lavavajillas (ciclos/semana)</label>
+              <input type="number" id="dishwasher" class="mt-1 p-2 block w-full border rounded-lg" placeholder="Ej. 5" required />
+            </div>
+            <div>
+              <label for="gardening" class="block text-sm font-medium text-gray-700">Uso de riego (litros/semana)</label>
+             
