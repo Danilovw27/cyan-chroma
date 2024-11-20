@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
@@ -14,115 +15,100 @@
 
     <!-- Contenido principal -->
     <main class="py-10">
-		<div class="max-w-7xl mx-auto grid grid-cols-12 gap-6">
-		  <!-- Caja izquierda: descripción y manual -->
-		  <div class="col-span-4 bg-gray-950 bg-opacity-70 h-max p-6 rounded-3xl text-white">
-			<h2 class="text-xl font-bold mb-4 pt-1 text-center">Bienvenido a AquaAnalytics</h2>
-			<p class="mb-4">
-			  AquaAnalytics es una herramienta diseñada para ayudarte a calcular tu consumo semanal de agua. 
-			  Introduce los datos solicitados y obtén una estimación precisa para optimizar el uso de este recurso vital.
-			</p>
-			<h3 class="text-lg font-semibold mb-2">Manual de usuario:</h3>
-			<ul class="list-disc list-inside">
-			  <li>Rellena todos los campos del formulario a la derecha.</li>
-			  <li>Asegúrate de que los valores sean realistas.</li>
-			  <li>Presiona el botón "Calcular" para obtener el consumo total.</li>
-			</ul>
-		  </div>
-	  
-		  <!-- Caja derecha: formulario -->
-		  <div class="col-span-8 bg-white p-6 shadow-lg rounded-lg flex-grow">
-			<h2 class="text-xl font-bold text-blue-600 mb-4 text-center">Calculadora de Consumo de Agua</h2>
-			<form id="waterForm" class="space-y-6">
-				<!-- Datos básicos -->
-				<fieldset>
-				  <legend class="text-lg font-semibold mb-2">Datos básicos del hogar</legend>
-				  <div>
-					<label for="numPeople" class="block text-sm font-medium text-gray-700">Número de personas en el hogar</label>
-					<input type="number" id="numPeople" class="mt-1 p-2 block w-full border rounded-lg" placeholder="Ej. 4" min="1" max="10" required />
-				  </div>
-				  <div>
-					<label for="numBathrooms" class="block text-sm font-medium text-gray-700">Número de baños</label>
-					<input type="number" id="numBathrooms" class="mt-1 p-2 block w-full border rounded-lg" placeholder="Ej. 2" min="1" />
-				  </div>
-				  <div>
-					<label for="showerTime" class="block text-sm font-medium text-gray-700">Duración promedio de duchas (minutos)</label>
-					<input type="number" id="showerTime" class="mt-1 p-2 block w-full border rounded-lg" placeholder="Ej. 10" min="1" />
-				  </div>
-				</fieldset>
-			  
-				<!-- Electrodomésticos -->
-				<fieldset>
-				  <legend class="text-lg font-semibold mb-2">Electrodomésticos</legend>
-				  <div>
-					<label for="laundry" class="block text-sm font-medium text-gray-700">Lavadora (cargas/semana)</label>
-					<input type="number" id="laundry" class="mt-1 p-2 block w-full border rounded-lg" placeholder="Ej. 3" min="0" required />
-				  </div>
-				  <div>
-					<label for="dishwasher" class="block text-sm font-medium text-gray-700">Lavavajillas (veces/semana)</label>
-					<input type="number" id="dishwasher" class="mt-1 p-2 block w-full border rounded-lg" placeholder="Ej. 5" min="0" />
-				  </div>
-				  <div>
-					<label for="dryer" class="block text-sm font-medium text-gray-700">Secadora (veces/semana)</label>
-					<input type="number" id="dryer" class="mt-1 p-2 block w-full border rounded-lg" placeholder="Ej. 3" min="0" />
-				  </div>
-				</fieldset>
-				<!-- Consumo en la cocina -->
-				<fieldset>
-				  <legend class="text-lg font-semibold mb-2">Consumo en la cocina</legend>
-				  <div>
-					<label for="kitchenWater" class="block text-sm font-medium text-gray-700">Uso de agua en la cocina (litros/día)</label>
-					<input type="number" id="kitchenWater" class="mt-1 p-2 block w-full border rounded-lg" placeholder="Ej. 20" />
-				  </div>
-				  <div>
-					<label for="mealsPerDay" class="block text-sm font-medium text-gray-700">Número de comidas preparadas por día</label>
-					<input type="number" id="mealsPerDay" class="mt-1 p-2 block w-full border rounded-lg" placeholder="Ej. 3" />
-				  </div>
-				</fieldset>
-			  
-				<!-- Otros consumos -->
-				<fieldset>
-				  <legend class="text-lg font-semibold mb-2">Otros consumos</legend>
-				  <div>
-					<label for="cleaningWater" class="block text-sm font-medium text-gray-700">Limpieza del hogar (litros/semana)</label>
-					<input type="number" id="cleaningWater" class="mt-1 p-2 block w-full border rounded-lg" placeholder="Ej. 50" />
-				  </div>
-				  <div>
-					<label for="carWash" class="block text-sm font-medium text-gray-700">Lavado de vehículos (veces/mes)</label>
-					<input type="number" id="carWash" class="mt-1 p-2 block w-full border rounded-lg" placeholder="Ej. 2" />
-				  </div>
-				</fieldset>
-			  
-				<!-- Botón calcular -->
-				<button type="submit" id="calculateButton" class="w-full bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-600">Calcular</button>
-			  </form>
-			  
-			<div id="result" class="mt-6 text-lg font-medium text-gray-700 hidden"></div>
-		  </div>
-		</div>
-<!-- Modal -->
-<div id="modal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center transition-opacity duration-300 ease-in-out opacity-0">
-	<div class="bg-gradient-to-r from-blue-500 to-blue-700 p-10 rounded-3xl shadow-2xl w-4/5 md:w-3/4 lg:w-2/3 xl:w-3/5 h-[70vh] overflow-auto transform scale-90 transition-transform duration-300 ease-in-out">
-	  <h2 class="text-4xl font-extrabold text-white mb-8 text-center drop-shadow-lg">
-		<i class="fas fa-water"></i> Consumo de Agua
-	  </h2>
-	  <div class="bg-white rounded-lg p-6 shadow-md">
-		<p id="modalContent" class="text-xl text-gray-700 text-center font-semibold">
-		  ¡Tu consumo semanal de agua es de <span class="text-blue-600 font-bold" id="waterResult">0</span> litros!
-		</p>
-	  </div>
-	  <button id="closeModal" class="mt-8 w-full bg-red-600 text-white py-3 rounded-lg hover:bg-red-700 font-semibold shadow-lg">Cerrar</button>
-	</div>
-  </div>
-  
-  
-  
-  
-  
-	  </main>
-	  
-  
+      <div class="max-w-7xl mx-auto grid grid-cols-12 gap-6">
+        <!-- Caja izquierda: descripción y manual -->
+        <div class="col-span-4 bg-gray-950 bg-opacity-70 h-max p-6 rounded-3xl text-white">
+          <h2 class="text-xl font-bold mb-4 pt-1 text-center">Bienvenido a AquaAnalytics</h2>
+          <p class="mb-4">
+            AquaAnalytics es una herramienta diseñada para ayudarte a calcular tu consumo semanal de agua.
+            Introduce los datos solicitados y obtén una estimación precisa para optimizar el uso de este recurso vital.
+          </p>
+          <h3 class="text-lg font-semibold mb-2">Manual de usuario:</h3>
+          <ul class="list-disc list-inside">
+            <li>Rellena todos los campos del formulario a la derecha.</li>
+            <li>Recuerda Ingresar Datos Basados en tus habitos o en los de los demás habitantes de tu hogar.</li>
+			<li>Puedes usar las teclas arriba y abajo para manipular los datos una vez ingresado en cada campo por separado.</li>
+            <li>Presiona el botón "Calcular" para obtener el consumo total.</li>
+          </ul>
+        </div>
 
-    <script src="/script.js" type="module"></script>
+        <!-- Caja derecha: formulario -->
+        <div class="col-span-8 bg-white p-6 shadow-lg rounded-lg flex-grow">
+          <h2 class="text-xl font-bold text-blue-600 mb-4 text-center">Calculadora de Consumo de Agua</h2>
+          <form id="waterForm" class="space-y-6">
+            <!-- Datos básicos -->
+            <fieldset>
+              <legend class="text-lg font-semibold mb-2">Datos básicos del hogar</legend>
+              <div>
+                <label for="numPeople" class="block text-sm font-medium text-gray-700">Número de personas en el hogar</label>
+                <input type="number" id="numPeople" class="mt-1 p-2 block w-full border rounded-lg" placeholder="Ej. 4" min="1" max="10" required />
+              </div>
+            </fieldset>
+
+            <!-- Tiempos de ducha por persona -->
+            <fieldset id="showerTimes">
+              <legend class="text-lg font-semibold mb-2">Tiempo de ducha por persona (minutos)</legend>
+            </fieldset>
+			<fieldset id="showerTimes">
+				<legend class="text-lg font-semibold mb-2">Otros Gastos en el Baño</legend>
+			  </fieldset>
+			<div>
+                <label for="flushesPerPerson" class="block text-sm font-medium text-gray-700">Descargas del inodoro por persona por día (Promedio)</label>
+                <input type="number" id="flushesPerPerson" class="mt-1 p-2 block w-full border rounded-lg" placeholder="Ej. 5" min="0" />
+              </div>
+              <div>
+                <label for="carWash" class="block text-sm font-medium text-gray-700">Lavado de vehículo (veces/mes)</label>
+                <input type="number" id="carWash" class="mt-1 p-2 block w-full border rounded-lg" placeholder="Ej. 2" min="0" />
+              </div>
+
+            <!-- Otros consumos -->
+            <fieldset>
+              <legend class="text-lg font-semibold mb-2">Otros consumos</legend>
+              <div>
+                <label for="laundry" class="block text-sm font-medium text-gray-700">Lavadora (cargas/semana)</label>
+                <input type="number" id="laundry" class="mt-1 p-2 block w-full border rounded-lg" placeholder="Ej. 3" min="0" required />
+              </div>
+              <label for="cleaningWater" class="block text-sm font-medium text-gray-700">
+				Litros utilizados para la limpieza del hogar (semanal):
+			  </label>
+			  <p class="text-xs text-gray-500">
+				El promedio mundial para la limpieza del hogar puede variar. Un consumo bajo suele ser menos de 200 litros semanales (limpieza básica con cubetas), mientras que un consumo alto puede superar los 600 litros (uso intensivo de agua corriente). 
+				<br />
+				<strong>Ejemplos:</strong> 
+				- Limpiar pisos con un balde de 10 litros, 3 veces a la semana (30 litros/semana).
+				- Uso de manguera para lavar un patio durante 20 minutos: ~200 litros por sesión.
+				<br />
+				Considera tus hábitos al responder.
+			  </p>
+			  <input type="number" id="cleaningWater" name="cleaningWater" class="mt-1 p-2 block w-full border rounded-lg" min="0" placeholder="Ej. 300" />
+			  
+              
+            </fieldset>
+
+            <!-- Botón calcular -->
+            <button type="submit" id="calculateButton" class="w-full bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-600">Calcular</button>
+          </form>
+
+          <div id="result" class="mt-6 text-lg font-medium text-gray-700 hidden"></div>
+        </div>
+      </div>
+
+      <!-- Modal -->
+      <div id="modal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50">
+        <div class="bg-gradient-to-r from-blue-500 to-blue-700 p-10 rounded-3xl shadow-2xl h-[70vh] w-4/5 md:w-3/4 lg:w-2/3 xl:w-3/5 overflow-auto transform scale-90 transition-transform duration-300 ease-in-out">
+          <h2 class="text-4xl font-extrabold text-white mb-8 text-center drop-shadow-lg">
+            <i class="fas fa-water"></i> Consumo de Agua
+          </h2>
+          <div class="bg-white rounded-lg p-6 shadow-md">
+            <p id="modalContent" class="text-xl text-gray-700 text-center font-semibold">
+              ¡Tu consumo mensual de agua es de <span class="text-blue-600 font-bold" id="waterResult">0</span> litros!
+            </p>
+          </div>
+          <button id="closeModal" class="mt-8 w-full bg-red-600 text-white py-3 rounded-lg hover:bg-red-700 font-semibold shadow-lg">Cerrar</button>
+        </div>
+      </div>
+    </main>
+
+    <script src="/script.js" type="module" defer></script>
   </body>
 </html>
