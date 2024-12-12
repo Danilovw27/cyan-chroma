@@ -20,7 +20,7 @@ document.getElementById("waterForm").addEventListener("submit", function (e) {
   const laundryWater = laundry * 70; // 70 litros por carga
   const cleaningWeeklyWater = cleaningWater; // Limpieza semanal ingresada
   const toiletWater = numPeople * flushesPerPerson * 10 * 7; // 10 litros por descarga * 7 días
-  const carWashWater = carWash * 150 / 4; // 150 litros por lavado (convertido a semanal)
+  const carWashWater = carWash * 150 / 4; // 150 litros por lavado 
 
   // Cálculo total semanal y mensual
   const totalWeeklyWater =
@@ -28,15 +28,15 @@ document.getElementById("waterForm").addEventListener("submit", function (e) {
   const totalMonthlyWater = (totalWeeklyWater * 4).toFixed(2);
 
   // Clasificación personalizada según el número de personas
-  const lowThreshold = 800 * numPeople; // Límite bajo
-  const highThreshold = 1100 * numPeople; // Límite alto
+  const low = 800 * numPeople; 
+  const high = 1100 * numPeople; 
 
   let classification = "";
   let recommendation = "";
-  if (totalWeeklyWater < lowThreshold) {
+  if (totalWeeklyWater < low) {
     classification = "Consumo bajo";
     recommendation = "Estás ahorrando agua. ¡Sigue así!";
-  } else if (totalWeeklyWater <= highThreshold) {
+  } else if (totalWeeklyWater <= high) {
     classification = "Consumo promedio";
     recommendation = "Estás en el rango promedio. Podrías reducir un poco más si es posible.";
   } else {
